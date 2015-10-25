@@ -2,8 +2,6 @@
  * Created by magdakowalska on 24/10/15.
  */
 
-var password = "Ed4tu#pL!123"
-
 function passwordAnalyser(password) {
 
 }
@@ -44,13 +42,61 @@ function getEntropy(password) {
     var entropy = pwdLength * tempLogVal;
     /* Stop from returning NaN value*/
     if (entropy > 0) {
-        return Math.floor(entropy); //Andi: returning the floor from here so that it doesn't need to get done everywhere else
+        return Math.floor(entropy);
     }
     return 0;
 }
 
-function checkDictionary(password) {
+function include(arr,obj) {
+    return (arr.indexOf(obj) != -1);
+}
 
-
+function getSubstrings(password) {
+    var substrings = new Array();
+    var substr = "";
+    var word = password.toLowerCase();
+    for (var i = 0; i < word.length; i++) {
+        for (var j = 0; i+j <= word.length; j++) { //added i+j and equal to comparison
+            substr = word.substring(j, i + j); //changed word.substring(i, i + j) to word.substring(j, i + j)
+            if(substr != "" && substr.length > 1) substrings.push(substr); //removing empty substring
+        }
+    }
+    substrings.push(word);
+    return substrings;
 
 }
+
+function checkDictionary(password) {
+    var substrings = getSubstrings(password);
+    var dictWordsUsed = new Array();
+    for(var i=0; i < substrings.length; i++) {
+        if(include(dictionary, substrings[i]) == true) {
+            dictWordsUsed.push(substrings[i]);
+        }
+    }
+    if(dictWordsUsed.length > 0) {
+        return dictWordsUsed;
+    } else {
+        return "No dictionary words used."
+    }
+
+}
+
+function checkRepetitions(password) {
+    var repetition = 0;
+    for(var i=0; i < password.length - 1; i++) {
+        if((password.charCodeAt(i) == (password.charCodeAt(i+1) + 1)) ||
+            (password.charCodeAt(i) == (password.charCodeAt(i+1) - 1)) ||
+            (password.charCodeAt(i) == password.charCodeAt(i+1)))
+        {
+            repetition += 1;
+        }
+    }
+    if(repetition > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+var dictionary = ["cat", "dog", "owl", "parrot", "lion", "tiger", "blue", "green", "yellow", "black"];

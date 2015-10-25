@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="Main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("#ent").val(getEntropy($("#pwd").val()));
+                $("#rep").val(checkRepetitions($("#pwd").val()));
+                $("#dic").val(checkDictionary($("#pwd").val()));
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>Password meter for minors. Fun.</p>
+    <p>Enter password: <input type="text" id="pwd"></p>
+    <p>Entropy: <input type="text" id="ent" readonly="true"></p>
+    <p>Repetition: <input type="text" id="rep" readonly="true"></p>
+    <p>Dictionary: <input type="text" id="dic" readonly="true" size="80"></p>
+    <button>Check my password!</button>
+
+</body>
+</html>
