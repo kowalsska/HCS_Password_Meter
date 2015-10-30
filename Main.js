@@ -89,7 +89,9 @@ function getSubstrings(password) {
     for (var i = 0; i < word.length; i++) {
         for (var j = 0; i+j <= word.length; j++) { //added i+j and equal to comparison
             substr = word.substring(j, i + j); //changed word.substring(i, i + j) to word.substring(j, i + j)
-            if(substr != "" && substr.length > 1) substrings.push(substr); //removing empty substring
+            if(substr != "" && substr.length > 2) { //only add substrings longer or equal to 3 chars
+                substrings.push(substr);
+            }
         }
     }
     substrings.push(word);
