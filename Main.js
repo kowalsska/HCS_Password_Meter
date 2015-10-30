@@ -22,10 +22,7 @@ function getAjax(textFile, successFunction) {
 function loadDictionary(data) {
 
     var words = data.split('\n');
-    for(var i= 0; i < words.length ; i++) {
-        dictionary.push(words[i]);
-    }
-    console.log(words);
+    dictionary = words;
 
 }
 
