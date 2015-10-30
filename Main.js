@@ -117,9 +117,7 @@ function checkDictionary(password) {
 function checkRepetitions(password) {
     var repetition = 0;
     for(var i=0; i < password.length - 1; i++) {
-        if((password.charCodeAt(i) == (password.charCodeAt(i+1) + 1)) ||
-            (password.charCodeAt(i) == (password.charCodeAt(i+1) - 1)) ||
-            (password.charCodeAt(i) == password.charCodeAt(i+1)))
+        if((password.charCodeAt(i) == password.charCodeAt(i+1)))
         {
             repetition += 1;
         }
