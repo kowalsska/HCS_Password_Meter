@@ -41,7 +41,8 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
         if(getEntropy($scope.name)>$scope.maxEntropy && !checkDictionary($scope.name) && !checkRepetitions($scope.name)){
             $window.alert("Great password");
         }else{
-           if(confirm("Oh no, your password is not strong enough. Let's make it better!")){
+            window.location.href = "passwordHelp.html";
+           /*if(confirm("Oh no, your password is not strong enough. Let's make it better!")){
               $scope.helpQuestion = "Think about a secret sentence and tell it to me.";
                //if more than 8 words continue else ask for another one
                while($scope.password.split(' ').length<8){
@@ -58,7 +59,7 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
                $scope.instructionsConfirm = "Type it again!";
                $scope.confirm = "Perfect! We now have our secret! Don't forget your sentence and number and you'll remember the code."
                $scope.bye = "See you later! Don't tell anyone our secret!"
-            }
+            }*/
         }
         console.log(getEntropy($scope.name));
     }

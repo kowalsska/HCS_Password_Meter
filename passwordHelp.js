@@ -38,3 +38,7 @@ String.prototype.wordCount = function () {
     return wordCount;
 
 };
+
+function showSuccessMessage(){
+    document.getElementById("successMessage").style.visibility = 'visible';
+}
