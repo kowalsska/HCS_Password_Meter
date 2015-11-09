@@ -20,11 +20,7 @@ function checkWords(inputVal){
 }
 
 function checkLettersInput(inputVal){
-
-    if(inputVal.length == wordCount){
-
-        console.log("Correct Length");
-    }
+document.getElementById('newPasswordConfirm').disabled = (inputVal.length !== wordCount);
 }
 
 String.prototype.wordCount = function () {
