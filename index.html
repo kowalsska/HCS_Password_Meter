@@ -35,10 +35,17 @@
             <p>Entropy: <input type="text" id="ent" readonly="true"></p>
             <p>Repetition: <input type="text" id="rep" readonly="true"></p>
             <p>Dictionary: <input type="text" id="dic" readonly="true" size="80"></p>
-            <button>Check my password!</button>
-            <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage(name)}}"></p>
+            <button ng-click="checkPassword()">Check my password!</button>
+            <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}"></p>
+
+            <div>
+                <label>{{helpQuestion}}</label>
+                <input  type="text"  id="newPwd" ng-model="password" />
+                <label>{{helpQuestion2}}</label>
+            </div>
 
         </div>
+
 
     </div>
 

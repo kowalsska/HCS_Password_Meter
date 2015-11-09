@@ -107,9 +107,9 @@ function checkDictionary(password) {
         }
     }
     if(dictWordsUsed.length > 0) {
-        return dictWordsUsed;
+        return true;
     } else {
-        return "No dictionary words used."
+        return false
     }
 
 }
