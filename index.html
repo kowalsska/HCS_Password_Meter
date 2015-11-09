@@ -7,15 +7,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("button").click(function(){
-                $("#ent").val(getEntropy($("#pwd").val()));
-                $("#rep").val(checkRepetitions($("#pwd").val()));
-                $("#dic").val(checkDictionary($("#pwd").val()));
-            });
-        });
-    </script>
 </head>
 <body>
     <p>Password meter for minors. Fun.</p>
@@ -32,11 +23,8 @@
 
         <div ng-controller = "MainCtrl">
             <p>Enter password: <input  type="text"  id="pwd" if="words" ng-model="name" /></p>
-            <p>Entropy: <input type="text" id="ent" readonly="true"></p>
-            <p>Repetition: <input type="text" id="rep" readonly="true"></p>
-            <p>Dictionary: <input type="text" id="dic" readonly="true" size="80"></p>
             <button ng-click="checkPassword()">Check my password!</button>
-            <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}"></p>
+            <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}" style="float: right"></p>
 
             <div>
                 <label>{{helpQuestion}}</label>

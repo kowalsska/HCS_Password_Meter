@@ -1,3 +1,9 @@
+var imgArray = ["images/frame_67_delay-0.04s.png", "images/frame_3_delay-0.04s.png", "images/frame_5_delay-0.04s.png",
+    "images/frame_6_delay-0.04s.png", "images/frame_8_delay-0.04s.png", "images/frame_10_delay-0.04s.png",
+    "images/frame_11_delay-0.04s.png", "images/frame_14_delay-0.04s.png", "images/frame_16_delay-0.04s.png",
+    "images/frame_19_delay-0.04s.png", "images/frame_22_delay-0.04s.png", "images/frame_24_delay-0.04s.png",
+    "images/frame_27_delay-0.04s.png"];
+
 angular.module("app",[]);
 angular.module("app").controller('MainCtrl',['$scope', '$window',  function($scope, $window){
     $scope.message = 'Hello';
@@ -16,52 +22,18 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
 
     $scope.getImage = function (){
 
-        var pwdStrength =Math.trunc((getEntropy($scope.name)-$scope.minEntropy)/(($scope.maxEntropy-$scope.minEntropy)/12));;
+        var pwdStrength =Math.trunc((getEntropy($scope.name)-$scope.minEntropy)/(($scope.maxEntropy-$scope.minEntropy)/12));
         console.log(pwdStrength);
         var imgToSwap = "";
+
         if(pwdStrength>12)
             imgToSwap = imgToSwap= "images/frame_27_delay-0.04s.png";
-        if(pwdStrength<1)
+        else if(pwdStrength<1)
             imgToSwap = imgToSwap= "images/frame_67_delay-0.04s.png";
-
-        switch (pwdStrength) {
-            case (1):
-                imgToSwap = "images/frame_3_delay-0.04s.png";
-                break;
-            case (2):
-                imgToSwap = "images/frame_5_delay-0.04s.png";
-                break;
-            case (3):
-                imgToSwap =  "images/frame_6_delay-0.04s.png";
-                break;
-            case (4):
-                imgToSwap =  "images/frame_8_delay-0.04s.png";
-                break;
-            case (5):
-                imgToSwap =  "images/frame_10_delay-0.04s.png";
-                break;
-            case (6):
-                imgToSwap="images/frame_11_delay-0.04s.png";
-                break;
-            case (7):
-                imgToSwap= "images/frame_14_delay-0.04s.png";
-                break;
-            case (8):
-                imgToSwap= "images/frame_16_delay-0.04s.png";
-                break;
-            case (9):
-                imgToSwap= "images/frame_19_delay-0.04s.png";
-                break;
-            case (10):
-                imgToSwap= "images/frame_22_delay-0.04s.png";
-                break;
-            case (11):
-                imgToSwap= "images/frame_24_delay-0.04s.png";
-                break;
-            case (12):
-                imgToSwap= "images/frame_27_delay-0.04s.png";
-                break;
+        else{
+            imgToSwap = imgArray[pwdStrength];
         }
+
         return imgToSwap;
     };
 
@@ -70,14 +42,14 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
             $window.alert("Great password");
         }else{
            if(confirm("Oh no, your password is not strong enough. Let's make it better!")){
-              $scope.helpQuestion = "Think about a secret sentence and tell it to me."
+              $scope.helpQuestion = "Think about a secret sentence and tell it to me.";
                //if more than 8 words continue else ask for another one
                while($scope.password.split(' ').length<8){
-                   $scope.helpQuestion2= "Oh no, tell me a longer secret."
+                   $scope.helpQuestion2= "Oh no, tell me a longer secret.";
                }
 
-                   $scope.helpQuestion2 = "Think about a secret number."
-                   $scope.helpQuestion3 = "Remember these now! And let's create our secret code."
+                   $scope.helpQuestion2 = "Think about a secret number.";
+                   $scope.helpQuestion3 = "Remember these now! And let's create our secret code.";
 
 
 
