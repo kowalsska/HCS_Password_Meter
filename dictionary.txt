@@ -1,9 +1,6 @@
-aa
-aah
 aahed
 aahing
 aahs
-aal
 aalii
 aaliis
 aals
@@ -12,9 +9,7 @@ aardwolf
 aargh
 aarrgh
 aarrghh
-aas
 aasvogel
-aba
 abaca
 abacas
 abaci
@@ -84467,7 +84462,6 @@ angelyn
 andera
 anamaria
 analisa
-an
 amira
 amiee
 amee

@@ -19,27 +19,33 @@ function getAjax(textFile, successFunction) {
 
 }
 
+//TO DO: fix it so user cannot input data until text file is loaded
 function loadDictionary(data) {
+    var tempDictionary = data.split('\n');
 
-    var words = data.split('\n');
-    dictionary = words;
+    for(var i = 0; i < tempDictionary.length; i ++){
+
+        tempDictionary[i] = tempDictionary[i].replace(/[\n\r]/g, '');
+        tempDictionary[i] = tempDictionary[i].toLowerCase();
+        if(tempDictionary[i].length <= 3){
+            tempDictionary.splice(i, 1);
+        }
+    }
+
+        dictionary = tempDictionary;
 
 }
-
 
 
 function getEntropy(password) {
 
     var pwd = String(password);
-    var numbersNumOf = 10;
-    var lowersNumOf = 26;
-    var uppersNumOf = 26;
-    var nonAlphaNumericsNumOf = 34;
 
     //var numbers = false;
     var upCase = false;
     var lowCase = false;
     var symbols = false;
+    var numbers = true;
 
     /* the range of characters used */
     var range = 0;
@@ -48,22 +54,22 @@ function getEntropy(password) {
 
     /* increase range if numbers are present*/
     if (pwd.replace(/[0-9]+/g, "").length < pwdLength) {
-        range += numbersNumOf;
+        range += 10;
         numbers = true;
     }
     /* increase range if lower case chars are present*/
     if (pwd.replace(/[a-z]+/g, "").length < pwdLength) {
-        range += lowersNumOf;
+        range += 26;
         lowCase = true;
     }
     /* increase range if upper case chars are present*/
     if (pwd.replace(/[A-Z]+/g, "").length < pwdLength) {
-        range += uppersNumOf;
+        range += 26;
         upCase = true;
     }
     /* increase range if non-alphanumeric chars are present*/
     if (pwd.replace(/\W+/g, "").length < pwdLength) {
-        range += nonAlphaNumericsNumOf;
+        range += 34;
         symbols = true;
     }
 
@@ -79,11 +85,11 @@ function getEntropy(password) {
 }
 
 function include(arr,obj) {
-    return (arr.indexOf(obj) != -1);
+    return (arr.indexOf(obj) > -1);
 }
 
 function getSubstrings(password) {
-    var substrings = new Array();
+    var substrings = [];
     var substr = "";
     var word = password.toLowerCase();
     for (var i = 0; i < word.length; i++) {
@@ -98,20 +104,48 @@ function getSubstrings(password) {
     return substrings;
 }
 
-function checkDictionary(password) {
-    var substrings = getSubstrings(password);
-    var dictWordsUsed = new Array();
+function highlightWords(password){
+
+    var newHTML = "";
+    var usedWords = getUsedWords(password);
+
+    if(usedWords.length > 0){
+
+        newHTML += "<li>Words are not allowed in the password. You have used the following words: </li>";
+
+        for(var i = 0; i < usedWords.length; i ++){
+            newHTML += "<li>" + usedWords[i] + "</li>";
+        }
+
+    }
+
+    console.log(newHTML);
+    document.getElementById("wordsUsedList").innerHTML = newHTML;
+
+}
+
+function getUsedWords(password){
+
+    var tempPassword = password.toLowerCase();
+    tempPassword = tempPassword.replace(" ", "");
+    tempPassword = tempPassword.replace("4", "a");
+    tempPassword = tempPassword.replace("0", "o");
+    tempPassword = tempPassword.replace("5", "s");
+    tempPassword = tempPassword.replace("3", "e");
+
+    var substrings = getSubstrings(tempPassword);
+    var dictWordsUsed = [];
     for(var i=0; i < substrings.length; i++) {
-        if(include(dictionary, substrings[i]) == true ) {
+        if(include(dictionary, substrings[i]) == true) {
             dictWordsUsed.push(substrings[i]);
         }
     }
-    if(dictWordsUsed.length > 0) {
-        return true;
-    } else {
-        return false
-    }
+    return dictWordsUsed;
 
+}
+
+function checkDictionary(password) {
+    return getUsedWords(password).length > 0;
 }
 
 function checkRepetitions(password) {
@@ -119,7 +153,7 @@ function checkRepetitions(password) {
     for(var i=0; i < password.length - 1; i++) {
         if((password.charCodeAt(i) == password.charCodeAt(i+1)))
         {
-            repetition += 1;
+            repetition ++;
         }
     }
     return repetition != 0;

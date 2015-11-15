@@ -62,7 +62,7 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
             }*/
         }
         console.log(getEntropy($scope.name));
-    }
+    };
 
     //Testing
     //http://stackoverflow.com/questions/26372729/setting-view-value-an-input-field-in-a-unit-test-of-an-angular-form-directive

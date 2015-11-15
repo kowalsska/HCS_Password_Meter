@@ -22,7 +22,7 @@
     <div ng-app = "app">
 
         <div ng-controller = "MainCtrl">
-            <p>Enter password: <input  type="text"  id="pwd" if="words" ng-model="name" /></p>
+            <p>Enter password: <input  type="text"  id="pwd" if="words" ng-model="name" oninput="highlightWords(this.value)"/></p>
             <button ng-click="checkPassword()">Check my password!</button>
             <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}" style="float: right"></p>
 
@@ -30,6 +30,10 @@
                 <label>{{helpQuestion}}</label>
                 <input  type="text"  id="newPwd" ng-model="password" />
                 <label>{{helpQuestion2}}</label>
+            </div>
+
+            <div>
+                <ul id="wordsUsedList" style="list-style-type: none; color: red"></ul>
             </div>
 
         </div>
