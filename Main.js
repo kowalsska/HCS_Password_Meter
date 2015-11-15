@@ -119,7 +119,6 @@ function highlightWords(password){
 
     }
 
-    console.log(newHTML);
     document.getElementById("wordsUsedList").innerHTML = newHTML;
 
 }
@@ -156,6 +155,6 @@ function checkRepetitions(password) {
             repetition ++;
         }
     }
-    return repetition != 0;
+    return repetition > 2;
 }
 
