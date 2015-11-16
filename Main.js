@@ -5,7 +5,7 @@
 var dictionary = [];
 
 window.onload = function () {
-    getAjax("words.txt", loadDictionary);
+    getAjax("wordsNew.txt", loadDictionary);
 };
 
 function getAjax(textFile, successFunction) {
@@ -111,6 +111,8 @@ function highlightWords(password){
 
     document.getElementById("wordsUsedList").innerHTML = newHTML;
 
+    displayRepetitions(password);
+
 }
 
 //Replace the letters found in every even position in array with letter that directly follows it
@@ -134,7 +136,6 @@ function getUsedWords(password){
     tempPassword = tempPassword.replaceLetters([" ", "", "4", "a", "0", "o",
         "5", "s", "3", "e", "1", "i", "8", "b"]);
 
-    console.log(tempPassword);
     var substrings = getSubstrings(tempPassword);
     var dictWordsUsed = [];
     for(var i=0; i < substrings.length; i++) {
@@ -150,6 +151,20 @@ function checkDictionary(password) {
     return getUsedWords(password).length > 0;
 }
 
+function displayRepetitions(password){
+
+    var newHTML = "";
+    var repetitions = checkRepetitions(password);
+
+    console.log(repetitions);
+    if(repetitions == true){
+        newHTML =  "You have three or more repeating letters. Please fix this.";
+    }
+
+    document.getElementById("repeatingLetters").innerText = newHTML;
+
+}
+
 function checkRepetitions(password) {
     var repetition = 0;
     for(var i=0; i < password.length - 1; i++) {
@@ -158,6 +173,6 @@ function checkRepetitions(password) {
             repetition ++;
         }
     }
-    return repetition > 2;
+    return repetition > 1;
 }
 

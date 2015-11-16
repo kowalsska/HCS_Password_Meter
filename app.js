@@ -61,7 +61,7 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
                $scope.bye = "See you later! Don't tell anyone our secret!"
             }*/
         }
-        console.log(getEntropy($scope.name));
+        //console.log(getEntropy($scope.name));
     };
 
     //Testing
