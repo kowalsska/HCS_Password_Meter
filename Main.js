@@ -27,7 +27,7 @@ function loadDictionary(data) {
 
         tempDictionary[i] = tempDictionary[i].replace(/[\n\r]/g, '');
         tempDictionary[i] = tempDictionary[i].toLowerCase();
-        if(tempDictionary[i].length <= 3){
+        if(tempDictionary[i].length <= 2){
             tempDictionary.splice(i, 1);
         }
     }
@@ -41,12 +41,6 @@ function getEntropy(password) {
 
     var pwd = String(password);
 
-    //var numbers = false;
-    var upCase = false;
-    var lowCase = false;
-    var symbols = false;
-    var numbers = true;
-
     /* the range of characters used */
     var range = 0;
     /* the length of the password */
@@ -55,22 +49,18 @@ function getEntropy(password) {
     /* increase range if numbers are present*/
     if (pwd.replace(/[0-9]+/g, "").length < pwdLength) {
         range += 10;
-        numbers = true;
     }
     /* increase range if lower case chars are present*/
     if (pwd.replace(/[a-z]+/g, "").length < pwdLength) {
         range += 26;
-        lowCase = true;
     }
     /* increase range if upper case chars are present*/
     if (pwd.replace(/[A-Z]+/g, "").length < pwdLength) {
         range += 26;
-        upCase = true;
     }
     /* increase range if non-alphanumeric chars are present*/
     if (pwd.replace(/\W+/g, "").length < pwdLength) {
         range += 34;
-        symbols = true;
     }
 
     /*bit strength calculated by log2(rangeOfChars)*lengthOfPassword*/
@@ -84,9 +74,9 @@ function getEntropy(password) {
     return 0;
 }
 
-function include(arr,obj) {
-    return (arr.indexOf(obj) > -1);
-}
+Array.prototype.includes = function(obj) {
+    return (this.indexOf(obj) > -1);
+};
 
 function getSubstrings(password) {
     var substrings = [];
@@ -123,19 +113,32 @@ function highlightWords(password){
 
 }
 
+//Replace the letters found in every even position in array with letter that directly follows it
+//E.g. ["a", "b", "i", "j"] will replace all a letters with b and all i letters with j
+String.prototype.replaceLetters = function(array){
+
+    var newString = this;
+
+    for(var i = 0; i < array.length; i += 2){
+        var regExp = new RegExp(array[i], "g");
+        newString = newString.replace(regExp, array[i + 1]);
+    }
+
+    return newString;
+};
+
 function getUsedWords(password){
 
     var tempPassword = password.toLowerCase();
-    tempPassword = tempPassword.replace(" ", "");
-    tempPassword = tempPassword.replace("4", "a");
-    tempPassword = tempPassword.replace("0", "o");
-    tempPassword = tempPassword.replace("5", "s");
-    tempPassword = tempPassword.replace("3", "e");
 
+    tempPassword = tempPassword.replaceLetters([" ", "", "4", "a", "0", "o",
+        "5", "s", "3", "e", "1", "i", "8", "b"]);
+
+    console.log(tempPassword);
     var substrings = getSubstrings(tempPassword);
     var dictWordsUsed = [];
     for(var i=0; i < substrings.length; i++) {
-        if(include(dictionary, substrings[i]) == true) {
+        if(dictionary.includes(substrings[i]) == true) {
             dictWordsUsed.push(substrings[i]);
         }
     }
