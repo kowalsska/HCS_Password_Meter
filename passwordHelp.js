@@ -57,6 +57,12 @@ String.prototype.wordCount = function () {
 
 };
 
-function showSuccessMessage(){
-    document.getElementById("successMessage").style.visibility = 'visible';
+function checkStrength(){
+    var password = new Password($("#numbersInput").val());
+    console.log(password);
+    if(password.strong) document.getElementById("successMessage").style.visibility = 'visible';
+    else{
+        sessionStorage.setItem("password", password.name);
+        window.location.href = "passwordHelp.html";
+    }
 }

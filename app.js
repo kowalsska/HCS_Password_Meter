@@ -41,7 +41,7 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
 
         var password = new Password($scope.name);
 
-        if(password.entropy>$scope.maxEntropy && (password.usedWords == 0) && password.repeatedChars){
+        if(password.strong){
             $window.alert("Great password");
         }else{
             sessionStorage.setItem("password", password.name);

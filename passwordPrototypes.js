@@ -6,7 +6,7 @@ function Password(password){
     this.subStringsArray = getSubstrings(this.name);
     this.usedWords = this.getUsedWords();
     this.repeatedChars = this.checkRepetitions();
-
+    this.strong = (this.entropy>70 && (this.usedWords == 0) && !this.repeatedChars);
     return this;
 
 }
@@ -109,7 +109,7 @@ Password.prototype.highlightWrongs = function(){
     }
 
     if(this.characterCount < 8){
-        newHTML += "<p>Your password needs to have at least 8 characters - your's only had " + this.characterCount + "<p>";
+        newHTML += "<p>Your password needs to have at least 8 characters - your's only has " + this.characterCount + "<p>";
     }
 
     if(this.repeatedChars){
