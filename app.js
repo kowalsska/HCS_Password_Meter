@@ -38,7 +38,8 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
     };
 
     $scope.checkPassword = function(){
-        if(getEntropy($scope.name)>$scope.maxEntropy && !checkDictionary($scope.name) && !checkRepetitions($scope.name)){
+
+        if(getEntropy($scope.name)>$scope.maxEntropy && !highlightWords($scope.name) && !checkRepetitions($scope.name)){
             $window.alert("Great password");
         }else{
             window.location.href = "passwordHelp.html";

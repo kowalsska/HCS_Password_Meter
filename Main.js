@@ -94,27 +94,6 @@ function getSubstrings(password) {
     return substrings;
 }
 
-function highlightWords(password){
-
-    var newHTML = "";
-    var usedWords = getUsedWords(password);
-
-    if(usedWords.length > 0){
-
-        newHTML += "<li>Words are not allowed in the password. You have used the following words: </li>";
-
-        for(var i = 0; i < usedWords.length; i ++){
-            newHTML += "<li>" + usedWords[i] + "</li>";
-        }
-
-    }
-
-    document.getElementById("wordsUsedList").innerHTML = newHTML;
-
-    displayRepetitions(password);
-
-}
-
 //Replace the letters found in every even position in array with letter that directly follows it
 //E.g. ["a", "b", "i", "j"] will replace all a letters with b and all i letters with j
 String.prototype.replaceLetters = function(array){
@@ -145,10 +124,6 @@ function getUsedWords(password){
     }
     return dictWordsUsed;
 
-}
-
-function checkDictionary(password) {
-    return getUsedWords(password).length > 0;
 }
 
 function displayRepetitions(password){
