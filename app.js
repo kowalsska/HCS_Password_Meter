@@ -23,7 +23,13 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
     $scope.getImage = function (){
 
         var pwdStrength =Math.trunc((getEntropy($scope.name)-$scope.minEntropy)/(($scope.maxEntropy-$scope.minEntropy)/12));
-        console.log(pwdStrength);
+        var strengthText;
+
+        if(pwdStrength >= 12)strengthText = "strong";
+        else if (pwdStrength >= 7)strengthText = "medium";
+        else strengthText = "weak";
+
+        document.getElementById("passwordStrength").innerText = "Your password is " + strengthText;
         var imgToSwap = "";
 
         if(pwdStrength>12)

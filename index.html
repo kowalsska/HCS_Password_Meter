@@ -26,7 +26,10 @@
         <div ng-controller = "MainCtrl">
             <p>Enter password: <input  type="text"  id="pwd" ng-model="name"/></p>
             <button ng-click="checkPassword()">Check my password!</button>
-            <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}" style="float: right"></p>
+            <div style="float: right;">
+                <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}"></p>
+                <p id="passwordStrength" style="color: red;">Your password is weak</p>
+            </div>
 
         </div>
 

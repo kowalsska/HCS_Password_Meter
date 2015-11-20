@@ -7,8 +7,8 @@ function Password(password){
     this.usedWords = this.getUsedWords();
     this.repeatedChars = this.checkRepetitions();
     this.strong = (this.entropy>70 && (this.usedWords == 0) && !this.repeatedChars);
-    return this;
 
+    return this;
 }
 
 getEntropy = function(password){
