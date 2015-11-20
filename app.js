@@ -39,9 +39,12 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
 
     $scope.checkPassword = function(){
 
-        if(getEntropy($scope.name)>$scope.maxEntropy && !highlightWords($scope.name) && !checkRepetitions($scope.name)){
+        var password = new Password($scope.name);
+
+        if(password.entropy>$scope.maxEntropy && (password.usedWords == 0) && password.repeatedChars){
             $window.alert("Great password");
         }else{
+            sessionStorage.setItem("password", password.name);
             window.location.href = "passwordHelp.html";
            /*if(confirm("Oh no, your password is not strong enough. Let's make it better!")){
               $scope.helpQuestion = "Think about a secret sentence and tell it to me.";

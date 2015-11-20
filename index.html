@@ -7,6 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script src="passwordPrototypes.js"></script>
+
 </head>
 <body>
     <p>Password meter for minors. Fun.</p>
@@ -22,15 +24,9 @@
     <div ng-app = "app">
 
         <div ng-controller = "MainCtrl">
-            <p>Enter password: <input  type="text"  id="pwd" if="words" ng-model="name"/></p>
+            <p>Enter password: <input  type="text"  id="pwd" ng-model="name"/></p>
             <button ng-click="checkPassword()">Check my password!</button>
             <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}" style="float: right"></p>
-
-            <div>
-                <label>{{helpQuestion}}</label>
-                <input  type="text"  id="newPwd" ng-model="password" />
-                <label>{{helpQuestion2}}</label>
-            </div>
 
         </div>
 

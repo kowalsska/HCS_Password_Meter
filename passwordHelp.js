@@ -1,5 +1,15 @@
 var wordCount = 0;
 
+function loadWindow(){
+
+    getAjax("words.txt", function(){
+        var password = new Password(sessionStorage.getItem("password"));
+        console.log(password);
+        password.highlightWrongs();
+    })
+
+}
+
 function checkWords(inputVal){
 
     var wordAmount = document.getElementById('wordAmount');
@@ -24,15 +34,11 @@ document.getElementById('numbersInput').disabled = (inputVal.length !== wordCoun
 }
 
 function checkNumbersInput(inputVal){
-    console.log(wordCount);
-
     document.getElementById('newPasswordConfirm').disabled = (inputVal.length <= wordCount || !hasNumSymbols(inputVal));
 }
 
 function hasNumSymbols(password){
-
     return (password.replace(/\W+/g, "").length < password.length || password.replace(/[0-9]+/g, "").length < password.length);
-
 }
 
 String.prototype.wordCount = function () {
@@ -50,29 +56,6 @@ String.prototype.wordCount = function () {
     return wordCount;
 
 };
-
-function highlightWords(password){
-
-    var newHTML = "";
-    var usedWords = getUsedWords(password);
-
-    if(usedWords.length > 0){
-
-        newHTML += "<li>Words are not allowed in the password. You have used the following words: </li>";
-
-        for(var i = 0; i < usedWords.length; i ++){
-            newHTML += "<li>" + usedWords[i] + "</li>";
-        }
-
-    }
-
-    document.getElementById("wordsUsedList").innerHTML = newHTML;
-
-    displayRepetitions(password);
-
-    return usedWords.length > 0;
-
-}
 
 function showSuccessMessage(){
     document.getElementById("successMessage").style.visibility = 'visible';
