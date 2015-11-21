@@ -19,7 +19,6 @@ function getAjax(textFile, successFunction) {
 
 }
 
-//TO DO: fix it so user cannot input data until text file is loaded
 function loadDictionary(data) {
     var tempDictionary = data.split('\n');
 
