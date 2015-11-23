@@ -22,7 +22,7 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
 
     $scope.getImage = function (){
 
-        var pwdStrength =Math.trunc((getEntropy($scope.name)-$scope.minEntropy)/(($scope.maxEntropy-$scope.minEntropy)/12));
+        var pwdStrength =Math.trunc(($scope.name.getEntropy()-$scope.minEntropy)/(($scope.maxEntropy-$scope.minEntropy)/12));
         var strengthText;
 
         if(pwdStrength >= 12)strengthText = "strong";

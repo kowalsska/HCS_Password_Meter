@@ -1,90 +1,31 @@
+/** Create a new Password object and find all relevant values such as entropy and strength
+ *
+ * @param password - Password string
+ * @returns {Password} - Password object with all relevant values included
+ * @constructor
+ */
 function Password(password) {
 
     this.name = password;
-    this.entropy = getEntropy(this.name);
+    this.entropy = password.getEntropy();
     this.characterCount = password.length;
-    this.subStringsArray = getSubstrings(this.name);
+    this.subStringsArray = password.getSubstrings();
     this.usedWords = this.getUsedWords();
     this.repeatedChars = this.checkRepetitions();
-    this.numbersUsed = regexPresent(password, '[0-9]');
-    this.capsMixUsed = (regexPresent(password, '[a-z]') && regexPresent(password, '[A-Z]'));
-    this.specCharsUsed = regexPresent(password, "\\W");
+    this.numbersUsed = password.regexPresent('[0-9]');
+    this.capsMixUsed = (password.regexPresent('[a-z]') && password.regexPresent('[A-Z]'));
+    this.specCharsUsed = password.regexPresent("\\W");
     this.strong = (this.entropy > 70 && (this.usedWords == 0) && !this.repeatedChars);
 
     return this;
 }
 
-getEntropy = function (password) {
-
-    var pwd = String(password);
-
-    /* the range of characters used */
-    var range = 0;
-    /* the length of the password */
-    var pwdLength = pwd.length;
-
-    /* increase range if numbers are present*/
-    if (pwd.replace(/[0-9]+/g, "").length < pwdLength) {
-        range += 10;
-    }
-    /* increase range if lower case chars are present*/
-    if (pwd.replace(/[a-z]+/g, "").length < pwdLength) {
-        range += 26;
-    }
-    /* increase range if upper case chars are present*/
-    if (pwd.replace(/[A-Z]+/g, "").length < pwdLength) {
-        range += 26;
-    }
-    /* increase range if non-alphanumeric chars are present*/
-    if (pwd.replace(/\W+/g, "").length < pwdLength) {
-        range += 34;
-    }
-
-    /*bit strength calculated by log2(rangeOfChars)*lengthOfPassword*/
-    var tempLogVal = Math.log(range) / Math.log(2);
-    /*Array to hold entropy @ index 0 and user feedback at index 1 */
-    var entropy = pwdLength * tempLogVal;
-    /* Stop from returning NaN value*/
-    if (entropy > 0) {
-        return Math.floor(entropy);
-    }
-    return 0;
-
-};
-
-function regexPresent(password, regex) {
-
-    var regExp = new RegExp(regex);
-    return password.replace(regExp, "").length < password.length;
-
-}
-
-function getSubstrings(password) {
-    var substrings = [];
-    var substr = "";
-    var word = password.toLowerCase();
-    for (var i = 0; i < word.length; i++) {
-        for (var j = 0; i + j <= word.length; j++) { //added i+j and equal to comparison
-            substr = word.substring(j, i + j); //changed word.substring(i, i + j) to word.substring(j, i + j)
-            if (substr != "" && substr.length > 2) { //only add substrings longer or equal to 3 chars
-                substrings.push(substr);
-            }
-        }
-    }
-    substrings.push(word);
-    return substrings;
-}
-
 Password.prototype.getUsedWords = function () {
 
-    var tempPassword = this.name.replaceLetters([" ", "", "4", "a", "0", "o",
-        "5", "s", "3", "e", "1", "i", "8", "b"]);
-
-    var substrings = getSubstrings(tempPassword);
     var dictWordsUsed = [];
-    for (var i = 0; i < substrings.length; i++) {
-        if (dictionary.includes(substrings[i]) == true) {
-            dictWordsUsed.push(substrings[i]);
+    for (var i = 0; i < this.subStringsArray.length; i++) {
+        if (dictionary.includes(this.subStringsArray[i]) == true) {
+            dictWordsUsed.push(this.subStringsArray[i]);
         }
     }
     return dictWordsUsed;
@@ -101,7 +42,7 @@ Password.prototype.checkRepetitions = function () {
     return repetition > 1;
 };
 
-Password.prototype.highlightWrongs = function () {
+Password.prototype.highlightRightsWrongs = function () {
 
     var newHTML = "<div style='color: red'>";
     var goodHTML = "<div style='color: green'>";
