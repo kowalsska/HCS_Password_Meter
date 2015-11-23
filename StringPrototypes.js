@@ -36,6 +36,11 @@ String.prototype.getEntropy = function () {
 
 };
 
+/**Check a string for a set of characters (e.g. numbers or letters)
+ *
+ * @param regex - Set of characters to check for (e.g. lower case letters would be '[a-z]')
+ * @returns {boolean} - True if the string contains this character set
+ */
 String.prototype.regexPresent = function(regex) {
 
     var regExp = new RegExp(regex);
@@ -43,8 +48,13 @@ String.prototype.regexPresent = function(regex) {
 
 };
 
+/**Get all possible substrings of a string
+ *
+ * @returns {Array} - An array of all substrings
+ */
 String.prototype.getSubstrings = function() {
 
+    //Take into account the fact that people often replace letters with numbers (a with 4 etc.) and check for these too
     var word = this.toLowerCase();
     word = word.replaceLetters([" ", "", "4", "a", "0", "o",
         "5", "s", "3", "e", "1", "i", "8", "b"]);
@@ -52,6 +62,7 @@ String.prototype.getSubstrings = function() {
     var substrings = [];
     var substr = "";
 
+    //Get all substrings
     for (var i = 0; i < word.length; i++) {
         for (var j = 0; i + j <= word.length; j++) { //added i+j and equal to comparison
             substr = word.substring(j, i + j); //changed word.substring(i, i + j) to word.substring(j, i + j)
