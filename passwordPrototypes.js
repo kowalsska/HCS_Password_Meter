@@ -1,4 +1,4 @@
-function Password(password){
+function Password(password) {
 
     this.name = password;
     this.entropy = getEntropy(this.name);
@@ -6,12 +6,15 @@ function Password(password){
     this.subStringsArray = getSubstrings(this.name);
     this.usedWords = this.getUsedWords();
     this.repeatedChars = this.checkRepetitions();
-    this.strong = (this.entropy>70 && (this.usedWords == 0) && !this.repeatedChars);
+    this.numbersUsed = regexPresent(password, '[0-9]');
+    this.capsMixUsed = (regexPresent(password, '[a-z]') && regexPresent(password, '[A-Z]'));
+    this.specCharsUsed = regexPresent(password, "\\W");
+    this.strong = (this.entropy > 70 && (this.usedWords == 0) && !this.repeatedChars);
 
     return this;
 }
 
-getEntropy = function(password){
+getEntropy = function (password) {
 
     var pwd = String(password);
 
@@ -49,14 +52,21 @@ getEntropy = function(password){
 
 };
 
-function getSubstrings(password){
+function regexPresent(password, regex) {
+
+    var regExp = new RegExp(regex);
+    return password.replace(regExp, "").length < password.length;
+
+}
+
+function getSubstrings(password) {
     var substrings = [];
     var substr = "";
     var word = password.toLowerCase();
     for (var i = 0; i < word.length; i++) {
-        for (var j = 0; i+j <= word.length; j++) { //added i+j and equal to comparison
+        for (var j = 0; i + j <= word.length; j++) { //added i+j and equal to comparison
             substr = word.substring(j, i + j); //changed word.substring(i, i + j) to word.substring(j, i + j)
-            if(substr != "" && substr.length > 2) { //only add substrings longer or equal to 3 chars
+            if (substr != "" && substr.length > 2) { //only add substrings longer or equal to 3 chars
                 substrings.push(substr);
             }
         }
@@ -65,15 +75,15 @@ function getSubstrings(password){
     return substrings;
 }
 
-Password.prototype.getUsedWords = function(){
+Password.prototype.getUsedWords = function () {
 
     var tempPassword = this.name.replaceLetters([" ", "", "4", "a", "0", "o",
         "5", "s", "3", "e", "1", "i", "8", "b"]);
 
     var substrings = getSubstrings(tempPassword);
     var dictWordsUsed = [];
-    for(var i=0; i < substrings.length; i++) {
-        if(dictionary.includes(substrings[i]) == true) {
+    for (var i = 0; i < substrings.length; i++) {
+        if (dictionary.includes(substrings[i]) == true) {
             dictWordsUsed.push(substrings[i]);
         }
     }
@@ -81,41 +91,71 @@ Password.prototype.getUsedWords = function(){
 
 };
 
-Password.prototype.checkRepetitions = function(){
+Password.prototype.checkRepetitions = function () {
     var repetition = 0;
-    for(var i=0; i < this.name.length - 1; i++) {
-        if((this.name.charCodeAt(i) == this.name.charCodeAt(i+1)))
-        {
-            repetition ++;
+    for (var i = 0; i < this.name.length - 1; i++) {
+        if ((this.name.charCodeAt(i) == this.name.charCodeAt(i + 1))) {
+            repetition++;
         }
     }
     return repetition > 1;
 };
 
-Password.prototype.highlightWrongs = function(){
+Password.prototype.highlightWrongs = function () {
 
-    var newHTML = "";
+    var newHTML = "<div style='color: red'>";
+    var goodHTML = "<div style='color: green'>";
 
-    if(this.usedWords.length > 0){
+    if (this.usedWords.length > 0) {
 
         newHTML += "<p>Words are not allowed in the password. You have used the following words: </p><ul>";
 
-        for(var i = 0; i < this.usedWords.length; i ++){
+        for (var i = 0; i < this.usedWords.length; i++) {
             newHTML += "<li>" + this.usedWords[i] + "</li>";
         }
 
         newHTML += "</ul>";
 
     }
-
-    if(this.characterCount < 8){
-        newHTML += "<p>Your password needs to have at least 8 characters - your's only has " + this.characterCount + "<p>";
+    else{
+        goodHTML += "<p>You have not used any words in your password. This is great because it makes it harder for others to guess<p>";
     }
 
-    if(this.repeatedChars){
+    if (this.characterCount < 8) {
+        newHTML += "<p>Your password needs to have at least 8 characters - your's only has " + this.characterCount + "<p>";
+    }
+    else{
+        goodHTML += "<p>Your password has " + this.characterCount + " characters - this is great!<p>";
+    }
+
+    if(!this.capsMixUsed){
+        newHTML += "<p>It is best to use a mixture of small and big letters<p>";
+    }
+    else{
+        goodHTML += "<p>You have used a mixture of small and big letters which is perfect when making a password<p>";
+    }
+
+    if(!this.numbersUsed){
+        newHTML += "<p>Passwords should contain numbers as well as letters<p>";
+    }
+    else {
+        goodHTML += "<p>You have used numbers in your password which makes it much harder to guess<p>";
+    }
+
+    if(!this.specCharsUsed){
+        newHTML += "<p>Great passwords will contain special characters like ! and &<p>";
+    }
+    else {
+        goodHTML += "<p>You have used special characters making your password much stronger<p>";
+    }
+
+    if (this.repeatedChars) {
         newHTML += "<p>Your password cannot have three or more of the same letters in a row<p>";
     }
 
-    document.getElementById("wordsUsedList").innerHTML = newHTML;
+    newHTML += "</div>";
+    goodHTML += "</div>";
+
+    document.getElementById("passwordPoints").innerHTML = newHTML + goodHTML;
 
 };

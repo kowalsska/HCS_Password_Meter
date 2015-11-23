@@ -38,7 +38,7 @@ function checkNumbersInput(inputVal){
 }
 
 function hasNumSymbols(password){
-    return (password.replace(/\W+/g, "").length < password.length || password.replace(/[0-9]+/g, "").length < password.length);
+    return (regexPresent(password, "\\W") || regexPresent(password, '[0-9]'));
 }
 
 String.prototype.wordCount = function () {
