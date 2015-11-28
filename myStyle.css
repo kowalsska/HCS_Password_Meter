@@ -1,0 +1,8 @@
+.ontop {
+    opacity: 1.0;
+}
+
+#theBox {
+    background-color: #eeeeee;
+    outline-color: #eeeeee;
+}

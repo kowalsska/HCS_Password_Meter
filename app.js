@@ -34,11 +34,16 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
         var strengthText;
 
         //Display a textual indication of the password strength
-        if(pwdStrength >= 12)strengthText = "strong";
-        else if (pwdStrength >= 7)strengthText = "medium";
-        else strengthText = "weak";
+        if(pwdStrength >= 12) {
+            strengthText = "strong";
+        } else if (pwdStrength >= 7) {
+            strengthText = "medium";
+        } else {
+            strengthText = "weak";
+        }
 
         document.getElementById("passwordStrength").innerText = "Your password is " + strengthText;
+
         var imgToSwap = "";
 
         //Display the correct GIF frame related to password strength
@@ -71,6 +76,5 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
     //Testing
     //http://stackoverflow.com/questions/26372729/setting-view-value-an-input-field-in-a-unit-test-of-an-angular-form-directive
     //http://stackoverflow.com/questions/25022663/how-to-unit-test-angular-form
-
 
 }]);
