@@ -31,8 +31,6 @@
 </head>
 <body>
 
-
-
     <div ng-app = "app">
         <div ng-controller = "MainCtrl">
 
@@ -49,26 +47,19 @@
             <div class="container text-center">
                 <div id="theBox" class="panel panel-default" >
                     <div class="panel-body">
-
-                        <p class="ontop">How secure is your password?</p>
+                        <p>How secure is your password?</p>
                         <p><input type="text" id="pwd" onKeyUp="color();" ng-model="name"/></p>
                         <h4 id="passwordStrength"> </h4>
                         <p type="button" class="btn btn-info" ng-click="checkPassword()">Check my password!</p>
-
                     </div>
                 </div>
-
                 <div>
                     <p><img id="imgCCk" name="imgCC" class="imgCC" src="{{getImage()}}"></p>
                 </div>
-
             </div>
 
         </div>
-
     </div>
-
-
 </div>
 
 </body>

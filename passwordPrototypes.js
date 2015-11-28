@@ -58,8 +58,8 @@ Password.prototype.checkRepetitions = function () {
 Password.prototype.highlightRightsWrongs = function () {
 
     //Put all negative points in red and all positive points in green
-    var newHTML = "<div style='color: red'>";
-    var goodHTML = "<div style='color: green'>";
+    var newHTML = "<div>";
+    var goodHTML = "<div>";
 
     //Display the relevant message concerning dictionary words used
     if (this.usedWords.length > 0) {
@@ -67,14 +67,16 @@ Password.prototype.highlightRightsWrongs = function () {
         newHTML += "<p>Words are not allowed in the password. You have used the following words: </p><ul>";
 
         for (var i = 0; i < this.usedWords.length; i++) {
-            newHTML += "<li>" + this.usedWords[i] + "</li>";
+            if( (i + 1) == this.usedWords.length ) {
+                newHTML += this.usedWords[i];
+            } else {
+                newHTML += this.usedWords[i] + ", ";
+            }
         }
-
-        newHTML += "</ul>";
 
     }
     else{
-        goodHTML += "<p>You have not used any words in your password. This is great because it makes it harder for others to guess<p>";
+        goodHTML += "<p>You have not used any dictionary words in your password. This is great because it makes it harder for others to guess<p>";
     }
 
     //Display the relevant message concerning character count
@@ -117,6 +119,7 @@ Password.prototype.highlightRightsWrongs = function () {
     goodHTML += "</div>";
 
     //Display the newly created HTML on screen
-    document.getElementById("passwordPoints").innerHTML = newHTML + goodHTML;
+    document.getElementById("badPoints").innerHTML = newHTML;
+    document.getElementById("goodPoints").innerHTML = goodHTML;
 
 };
