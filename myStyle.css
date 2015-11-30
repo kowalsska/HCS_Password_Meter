@@ -6,3 +6,12 @@
     background-color: #eeeeee;
     outline-color: #eeeeee;
 }
+
+#betterBox {
+    background-color: #d9edf7;
+    outline-color: #d9edf7;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+}
