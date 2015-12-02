@@ -35,14 +35,14 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
 
         //Display a textual indication of the password strength
         if(pwdStrength >= 12) {
-            strengthText = "strong";
+            strengthText = "looks good. Press check password to make sure it\'s strong.";
         } else if (pwdStrength >= 7) {
-            strengthText = "medium";
+            strengthText = "is average";
         } else {
-            strengthText = "weak";
+            strengthText = "is weak";
         }
 
-        document.getElementById("passwordStrength").innerText = "Your password is " + strengthText;
+        document.getElementById("passwordStrength").innerText = "Your password " + strengthText;
 
         var imgToSwap = "";
 

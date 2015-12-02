@@ -5,7 +5,7 @@ var wordCount = 0;
  */
 function loadWindow(){
 
-    getAjax("../words.txt", function(){
+    getAjax("../wordsNew.txt", function(){
         var password = new Password(sessionStorage.getItem("password"));
         //Highlight what is good and bad about the password entered
         password.highlightRightsWrongs();
