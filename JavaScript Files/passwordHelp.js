@@ -18,7 +18,7 @@ function loadWindow(){
  * @param inputVal - User's input - should be the first letter of each word entered in the first text box
  */
 function checkLettersInput(inputVal){
-document.getElementById('moveStep3').disabled = (inputVal.length != sessionStorage.getItem("wordCount"));
+    document.getElementById('moveStep3').disabled = (inputVal.length != sessionStorage.getItem("wordCount"));
 }
 
 /**Let the user click 'confirm new password' if numbers and symbols have been added to the password
