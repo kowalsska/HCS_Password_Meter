@@ -119,24 +119,39 @@ function checkStrength(inputVal){
     }
 }
 
+/** Show the sentence inputted on the previous step
+ *
+ */
 function step2Load(){
     document.getElementById("sentenceShow").innerText = sessionStorage.getItem("sentence");
 }
 
+/** Show the letters inputted on the previous step
+ *
+ */
 function step3Load(){
     document.getElementById("lettersShow").innerText = sessionStorage.getItem("letters");
 }
 
+/** Save the inputted sentence
+ *
+ */
 function showStep2(){
     sessionStorage.setItem("sentence", document.getElementById("secretInput").value);
     window.location.href = 'step2.html';
 }
 
+/** Save the inputted letters
+ *
+ */
 function showStep3(){
     sessionStorage.setItem("letters", document.getElementById("lettersInput").value);
     window.location.href = 'step3.html';
 }
 
+/** Save the inputted password
+ *
+ */
 function showStep4(){
     sessionStorage.setItem("password", $("#numbersInput").val());
     window.location.href = 'step4.html';
