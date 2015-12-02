@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../JavaScript%20Files/passwordHelp.js"></script>
+    <script src="../JavaScript%20Files/Main.js"></script>
+    <script src="../JavaScript%20Files/passwordPrototypes.js"></script>
+    <script src="../JavaScript%20Files/StringPrototypes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../myStyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+<div class="container text-center">
+
+    <div id="betterBox" class="panel panel-default">
+
+        <label for="repeatInput">Almost done! You did great so far!
+            <br>
+            Remember all the techniques we learned!
+            <br>
+            Just remember your secret sentence, the numbers you chose and where you placed your special symbols!
+            <br>
+            Enter a password once more!</label>
+        <br>
+
+        <p><input id="repeatInput" type="text"></p>
+
+        <p>
+            <button class="btn btn-info" id="newPasswordConfirm" onclick="finishedPassword()">Create Password
+            </button>
+        </p>
+
+        <div style="visibility: hidden" id="successMessage">
+            <h1 style="color: green;">Congratulations! Your new password is awesome!</h1>
+            <img src="https://s-media-cache-ak0.pinimg.com/originals/26/e7/86/26e786a545320f493d8c52293da597b4.gif">
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

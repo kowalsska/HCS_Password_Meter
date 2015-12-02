@@ -1,8 +1,8 @@
-var imgArray = ["images/frame_67_delay-0.04s.png", "images/frame_3_delay-0.04s.png", "images/frame_5_delay-0.04s.png",
-    "images/frame_6_delay-0.04s.png", "images/frame_8_delay-0.04s.png", "images/frame_10_delay-0.04s.png",
-    "images/frame_11_delay-0.04s.png", "images/frame_14_delay-0.04s.png", "images/frame_16_delay-0.04s.png",
-    "images/frame_19_delay-0.04s.png", "images/frame_22_delay-0.04s.png", "images/frame_24_delay-0.04s.png",
-    "images/frame_27_delay-0.04s.png"];
+var imgArray = ["../images/frame_67_delay-0.04s.png", "../images/frame_3_delay-0.04s.png", "../images/frame_5_delay-0.04s.png",
+    "../images/frame_6_delay-0.04s.png", "../images/frame_8_delay-0.04s.png", "../images/frame_10_delay-0.04s.png",
+    "../images/frame_11_delay-0.04s.png", "../images/frame_14_delay-0.04s.png", "../images/frame_16_delay-0.04s.png",
+    "../images/frame_19_delay-0.04s.png", "../images/frame_22_delay-0.04s.png", "../images/frame_24_delay-0.04s.png",
+    "../images/frame_27_delay-0.04s.png"];
 
 /**Interact with the UI and retrieve data such as password entered
  *
@@ -48,9 +48,9 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
 
         //Display the correct GIF frame related to password strength
         if(pwdStrength>12)
-            imgToSwap = imgToSwap= "images/frame_27_delay-0.04s.png";
+            imgToSwap = imgToSwap= "../images/frame_27_delay-0.04s.png";
         else if(pwdStrength<1)
-            imgToSwap = imgToSwap= "images/frame_67_delay-0.04s.png";
+            imgToSwap = imgToSwap= "../images/frame_67_delay-0.04s.png";
         else{
             imgToSwap = imgArray[pwdStrength];
         }
@@ -69,7 +69,7 @@ angular.module("app").controller('MainCtrl',['$scope', '$window',  function($sco
             $window.alert("Great password");
         }else{
             sessionStorage.setItem("password", password.name);
-            window.location.href = "passwordHelp.html";
+            window.location.href = "../HTML Files/step1.html";
         }
     };
 

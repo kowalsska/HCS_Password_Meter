@@ -4,7 +4,7 @@ var dictionary = [];
  *
  */
 window.onload = function () {
-    getAjax("wordsNew.txt", loadDictionary);
+    getAjax("../wordsNew.txt", loadDictionary);
 };
 
 /**Retrieve data from a text file

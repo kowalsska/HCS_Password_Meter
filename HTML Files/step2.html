@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../JavaScript%20Files/passwordHelp.js"></script>
+    <script src="../JavaScript%20Files/Main.js"></script>
+    <script src="../JavaScript%20Files/passwordPrototypes.js"></script>
+    <script src="../JavaScript%20Files/StringPrototypes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../myStyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body onload="step2Load()">
+
+
+<div class="container text-center">
+
+    <div id="betterBox" class="panel panel-default">
+
+        <h1 id="sentenceShow"></h1>
+
+        <label for="lettersInput">
+            Now take only the first letter of each word in the sentence and create the password!</label>
+        <br>
+        <input id="lettersInput" type="text" oninput="checkLettersInput(this.value)">
+
+        <br>
+        <br>
+
+        <button onclick="showStep3()" class="btn btn-info" id="moveStep3" disabled>Next Step</button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

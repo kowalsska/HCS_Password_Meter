@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../JavaScript%20Files/passwordHelp.js"></script>
+    <script src="../JavaScript%20Files/Main.js"></script>
+    <script src="../JavaScript%20Files/passwordPrototypes.js"></script>
+    <script src="../JavaScript%20Files/StringPrototypes.js"></script>
+    <link rel="stylesheet" type="text/css" href="../myStyle.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body onload="step3Load()">
+
+
+<div class="container text-center">
+
+    <div id="betterBox" class="panel panel-default">
+
+        <h2 id="lettersShow"></h2>
+
+        <label for="numbersInput">One last thing!
+            <br>
+            In order to make your password harder to guess let's add something more!
+            <br>
+            We need to pick a number and a symbol!
+            <br>
+            For example you can replace a character in your password with a number: if your password is "gafer", you can change it to "g4f3r".
+            <br>
+            Special symbols(!@#$%^&*~_+=) can be placed anywhere in the password, but avoid putting them at the beginning or at the end.
+            <br>
+            Don't forget where you placed it.</label>
+        <br>
+
+        <p><input id="numbersInput" type="text" oninput="checkNumbersInput(this.value)"></p>
+
+        <p>
+            <button class="btn btn-info" id="newPasswordConfirm" disabled onclick="showStep4()">Create Password
+            </button>
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

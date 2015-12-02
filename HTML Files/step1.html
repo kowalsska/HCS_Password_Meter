@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="passwordHelp.js"></script>
-    <script src="Main.js"></script>
-    <script src="passwordPrototypes.js"></script>
-    <script src="StringPrototypes.js"></script>
-    <link rel="stylesheet" type="text/css" href="myStyle.css">
+    <script src="../JavaScript%20Files/passwordHelp.js"></script>
+    <script src="../JavaScript%20Files/Main.js"></script>
+    <script src="../JavaScript%20Files/passwordPrototypes.js"></script>
+    <script src="../JavaScript%20Files/StringPrototypes.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../myStyle.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- Latest compiled JavaScript -->
@@ -52,28 +53,20 @@
 
         <h2>Let's make a better one!</h2> <br>
 
-        <label for="secretInput">Please enter a secret sentence at least eight words long.</label>
+        <label for="secretInput">Please enter a secret sentence at least eight words long. <br>
+            How will we use this secret sentence?
+            <br>
+            The secret sentence will help you create a strong password.
+            <br>
+            We will use a technique that will help you memorise your password as long you remember your sentence!
+            <br>
+            So let's start!
+        </label>
         <br>
         <input id="secretInput" type="text" style="width: 50%;" oninput="checkWords(this.value)">
         <p id="wordAmount" style="color: red">0/8 words</p>
 
-        <br>
-
-        <label for="lettersInput">Please enter the first letter from each word of the sentence to create your new password.</label>
-        <br>
-        <input id="lettersInput" type="text" disabled oninput="checkLettersInput(this.value)">
-
-        <br>
-        <br>
-
-        <label for="numbersInput">Now add special characters and numbers inside your password.
-            Remember where you've placed them.</label>
-        <br>
-        <p><input id="numbersInput" type="text" disabled oninput="checkNumbersInput(this.value)"></p>
-
-        <p><button class="btn btn-info" id="newPasswordConfirm" disabled onclick="checkStrength()">Create Password</button></p>
-
-        <h1 style="color: green; visibility: hidden" id="successMessage">Your new password has been created!</h1>
+        <button onclick="showStep2()" class="btn btn-info" id="moveStep2" disabled>Next Step</button>
 
     </div>
 
